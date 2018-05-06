@@ -14,28 +14,27 @@ Upgrade to premium and get in-depth solutions to every problem.
 If you liked this problem, feel free to forward it along! As always, shoot us an email if there's anything we can help with!
 """
 
-def find_smallest_missing_positive_integer(arr):
-    if arr[0] != 1:
-        smallest_missing_integer = 1
-    else:
-        smallest_missing_integer = 2
+def get_positive_array_portion(arr):
+    first_positive_index = None
+    i = -1
+    for j in range(len(arr)):
+        if arr[j] <= 0:
+            i += 1
+            arr[i], arr[j] = arr[j], arr[i]
+    for j in range(len(arr)):
+        if arr[j] > 0:
+            return arr[j:]
 
-    for index, value in enumerate(arr):
-        if index == 0:
-            continue
-        if index > 0:
-            current_index = index - 1
-            current_value = value
-            while current_index >= 0 and current_value < arr[current_index]:
-                temp_value = current_value
-                arr[current_index+1] = arr[current_index]
-                arr[current_index] = temp_value
-                current_index = current_index - 1
-            current_index = current_index+1
-            walk_up_index = current_index+1
-            while walk_up_index < index and current_value == smallest_missing_integer:
-                if arr[walk_up_index] - arr[current_index] > 1:
-                    smallest_missing_integer = arr[current_index]+1
-                walk_up_index = walk_up_index + 1
-                current_index = current_index + 1
-    return smallest_missing_integer
+def find_smallest_missing_positive_integer(arr):
+    arr = get_positive_array_portion(arr)
+    for i in range(len(arr)):
+        if abs(arr[i]) <= len(arr) and arr[abs(arr[i])-1] > 0:
+            arr[abs(arr[i])-1] = -arr[abs(arr[i])-1]
+    for i in range(len(arr)):
+        if arr[i] > 0:
+            return i+1
+    return len(arr)+1
+
+assert find_smallest_missing_positive_integer([3, 4, -1, 0, 1]) == 2
+assert find_smallest_missing_positive_integer([1, 2, 0]) == 3
+assert find_smallest_missing_positive_integer([1, 5, 7]) == 2
