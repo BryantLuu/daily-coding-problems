@@ -28,14 +28,14 @@ digits = str(111)
 assert count_decoding(digits, len(digits)) == 3
 
 """
-step through:
+step through example 1:
                                          count_decoding(111, 3)
                                                   ^
-                           count_decoding(111, 2) + count_decoding(111, 1)
+                           count_decoding(111, 2) + count_decoding(111, 1) # (2 + 1)
                                     ^
-             count_decoding(111, 1) + count_decoding(111, 0)
+             count_decoding(111, 1) + count_decoding(111, 0) # (1 + 1)
 
-step through:
+step through example 2:
                                          count_decoding(101, 3)
                                                   ^
                            count_decoding(101, 2) + 0
