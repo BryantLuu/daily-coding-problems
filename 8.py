@@ -20,8 +20,9 @@ For example, the following tree has 5 unival subtrees:
  """
 
  """
- My thoughts:
-    So the subproblem here is to check if the current node is a unival subtree and how man subtrees are under it
+ My approach:
+    First, check if the current node would part of the above nodes unival tree. If we are the last node, return 1 and the boolean.
+    If we are not the last node, return the unival count from the left and right subtrees and whether below nodes are unival trees
  """
 
 class Node():
