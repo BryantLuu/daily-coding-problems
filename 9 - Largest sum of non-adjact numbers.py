@@ -19,7 +19,7 @@ def largest_sum_of_non_adjacent_numbers(arr):
     left_num = arr[left_index]
     right_index = 2
     right_num = arr[right_index]
-    while right_index < len(arr)-1:
+    while right_index < len(arr) - 1:
         right_index += 1
         if arr[right_index] > right_num:
             right_num = arr[right_index]
