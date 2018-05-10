@@ -45,6 +45,8 @@ def autocomplete(query_string, possible_words):
         if not current_node.children[char_to_index(letter)]:
             return word_list
         current_node = current_node.children[char_to_index(letter)]
+    if current_node.is_end_of_word:
+        word_list.append(prefix)
     def get_words(node, prefix):
         for index, child in enumerate(node.children):
             if child:
@@ -55,3 +57,4 @@ def autocomplete(query_string, possible_words):
     return word_list
 
 assert autocomplete('de', ['dog', 'deer', 'deal']) == ['deal', 'deer']
+assert autocomplete('hel', ['hello', 'dog', 'hell', 'cat', 'hel', 'help', 'helps', 'helpings']) == ['hel', 'hello', 'hell', 'helpings', 'helps', 'help']
