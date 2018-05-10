@@ -75,7 +75,6 @@ def deserialize(s):
         if saved_nodes:
             add_nodes(saved_nodes.pop(0))
     return root
+    
 node = Node('root', Node('left', Node('left.left')), Node('right'))
-serialized = serialize(node)
-deserialized = deserialize(serialized)
 assert deserialize(serialize(node)).left.left.val == 'left.left'
