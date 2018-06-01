@@ -15,15 +15,12 @@ If you liked this problem, feel free to forward it along! As always, shoot us an
 """
 
 def get_positive_array_portion(arr):
-    first_positive_index = None
-    i = -1
-    for j in range(len(arr)):
-        if arr[j] <= 0:
-            i += 1
-            arr[i], arr[j] = arr[j], arr[i]
-    for j in range(len(arr)):
-        if arr[j] > 0:
-            return arr[j:]
+    pivot_index = 0
+    for i in range(len(arr)):
+        if arr[i] < 1:
+            arr[i], arr[pivot_index] = arr[pivot_index], arr[i]
+            pivot_index += 1
+    return arr[pivot_index:]
 
 def find_smallest_missing_positive_integer(arr):
     arr = get_positive_array_portion(arr)
