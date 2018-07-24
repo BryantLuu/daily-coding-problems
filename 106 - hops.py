@@ -16,4 +16,5 @@ def can_hop(arr):
         hops += arr[i]
         if i+1 > hops:
             return False
+        hops -= 1
     return True
